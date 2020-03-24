@@ -102,4 +102,5 @@ dist
 
 # TernJS port file
 .tern-port
-client/zoom-out/package-lock.json
+client/package-lock.json
+client/build/
