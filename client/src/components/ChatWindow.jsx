@@ -7,6 +7,6 @@ const ChatWindow = () => (
         <MessageListPanel />
         <CreateMessagePanel />
     </div>
-)
+);
 
 export default ChatWindow;
