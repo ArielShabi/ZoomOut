@@ -6,4 +6,4 @@ const {addMessageAction} = createActions(
     }    
 )
 
-export const messageAction = {addMessageAction};
+export {addMessageAction};
