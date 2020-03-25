@@ -1,9 +1,8 @@
-import {createActions} from 'redux-actions';
+import { createAction } from 'redux-actions';
 
-const {addMessageAction} = createActions(
-    {
-        ADD_MESSAGE: (messages) => ({messages})
-    }    
-)
+const addMessagesAction = createAction('ADD_MESSAGE');
 
-export {addMessageAction};
+const addMessages = messages => (addMessagesAction(messages));
+
+
+export { addMessages, addMessagesAction };
