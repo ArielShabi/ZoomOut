@@ -1,10 +1,17 @@
 import React from 'react';
+import Message from '../Message';
 import './message-list-panel.css';
 
-const MessageListPanel = () => (
-    <div className="message-list-panel">
-        TEST
-    </div>
-);
+const MessageListPanel = ({messages}) => {
+    const messagesComponenets = messages.map(
+        messageText => (<Message text={messageText} />)
+    );
+
+    return (
+        <div className="message-list-panel">
+            {messagesComponenets}
+        </div>
+    )
+};
 
 export default MessageListPanel;

@@ -1,3 +1,3 @@
-import MessageListPanel from './MessageListPanel';
+import MessageListPanel from './MessageListPanelContainer';
 
 export default MessageListPanel;
