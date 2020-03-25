@@ -108,4 +108,4 @@ client/build/
 client/.vscode/
 
 #server
-client/package-lock.json
+server/package-lock.json
