@@ -1,5 +1,5 @@
 const express = require('express');
-const webSocket = require('websocket').server;
+const WebSocket = require('ws');
 const { createServer } = require('http');
 
 const serverPort = 1337;
@@ -7,7 +7,7 @@ const serverPort = 1337;
 const app = express();
 const httpServer = createServer({ app });
 
-const webSocketServer = new webSocket({ httpServer });
+const webSocketServer = new WebSocket.Server({ server: httpServer });
 
 webSocketServer.on('connection', function connection(ws) {
     console.log(`New connection ${ws}`);
@@ -20,6 +20,6 @@ webSocketServer.on('connection', function connection(ws) {
     });
 });
 
-server.listen(serverPort, () => {
+httpServer.listen(serverPort, () => {
     console.log(`Listening on http://localhost:${serverPort}`);
 });
