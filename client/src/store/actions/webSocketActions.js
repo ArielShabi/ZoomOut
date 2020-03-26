@@ -6,6 +6,21 @@ const types = {
     send: 'WS_SEND'
 }
 
-const messageRecived = createAction('MESSAGE_RECIVED');
+const connectWebSocket = createAction(types.connect);
+const closeWebSocket = createAction(types.close);
+const sendWebSocket = createAction(types.send);
 
-export default { types, messageRecived };
+const messageRecived = createAction('MESSAGE_RECIVED');
+const connectedWebSocket = createAction('WS_CONNECTED');
+const closedWebSocket = createAction('WS_CLOSED');
+
+
+export default {
+    types,
+    connectWebSocket,
+    closeWebSocket,
+    sendWebSocket,
+    messageRecived,
+    connectedWebSocket,
+    closedWebSocket
+};
