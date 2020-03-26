@@ -4,5 +4,4 @@ const addMessagesAction = createAction('ADD_MESSAGE');
 
 const addMessages = messages => (addMessagesAction(messages));
 
-
-export { addMessages, addMessagesAction };
+export default { addMessages, addMessagesAction };
