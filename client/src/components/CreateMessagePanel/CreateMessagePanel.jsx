@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-const CreateMessagePanel = ({ sendMessages }) => {
+const CreateMessagePanel = ({ sendMessage }) => {
     const [userText, setUserText] = useState('');
 
-    const sendMessage = () => {
+    const onSendClicked = () => {
         if (userText.length > 0) {
-            sendMessages([userText]);
+            sendMessage([userText]);
             setUserText('');
         }
     }
@@ -13,7 +13,7 @@ const CreateMessagePanel = ({ sendMessages }) => {
     return (
         <div>
             <input type="text" value={userText} onChange={e => setUserText(e.target.value)} />
-            <button onClick={sendMessage}>שלח</button>
+            <button onClick={onSendClicked}>שלח</button>
         </div>
     )
 };

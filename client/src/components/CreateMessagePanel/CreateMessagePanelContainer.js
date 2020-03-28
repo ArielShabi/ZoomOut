@@ -3,7 +3,7 @@ import { messageActions } from '../../store/actions';
 import CreateMessagePanel from './CreateMessagePanel';
 
 const mapDispatchToProps = {
-    sendMessages: messageActions.sendMessages
+    sendMessage: messageActions.sendMessage
 }
 
 export default connect(null, mapDispatchToProps)(CreateMessagePanel);

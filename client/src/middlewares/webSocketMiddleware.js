@@ -1,4 +1,4 @@
-import { webSocketActions } from '../store/actions';
+import { webSocketActions, messageActions } from '../store/actions';
 
 const host = "ws://localhost:1337/";
 
@@ -18,7 +18,7 @@ const webSocketMiddleware = () => {
         const payload = event.data;
         console.log('receiving server message');
 
-        store.dispatch(webSocketActions.messageRecived(payload));
+        store.dispatch(webSocketActions.dataRecived(payload));        
     }
 
     return store => next => action => {
@@ -43,7 +43,7 @@ const webSocketMiddleware = () => {
                 console.log('websocket closed');
                 break;
             case webSocketActions.types.send:
-                console.log('sending a message', action);
+                console.log('sending a message', action);                
                 socket.send(JSON.stringify(action.payload));
                 break;
             default:

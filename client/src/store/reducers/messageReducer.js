@@ -5,7 +5,7 @@ const defaultState = [];
 
 const messageReducer = handleActions(
     {
-        [messageActions.addMessagesAction]: (state, action) => ( [...state, ...action.payload ])
+        [messageActions.addMessages]: (state, action) => ( [...state, ...action.payload ])
     },
     defaultState
 );
