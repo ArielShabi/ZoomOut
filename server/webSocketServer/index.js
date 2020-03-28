@@ -7,7 +7,7 @@ const startWebSocketServer = (httpServer) => {
     const webSocketServer = new WebSocket.Server({ server: httpServer });
     const users = userHolder();
 
-    webSocketServer.on('connection', function connection(webSocketConnection) {
+    webSocketServer.on('connection', webSocketConnection => {
         const userId = users.addUser(webSocketConnection);
         const user = users.getAllOpenUsers(userId);
 
@@ -19,6 +19,9 @@ const startWebSocketServer = (httpServer) => {
         webSocketConnection.on('close', (code, reason) => {
             users.removeUser(userId);
         });
+
+        const userIdMessage = messageCreator.createServerMessage({ id: userId });
+        webSocketConnection.send(userIdMessage);
     });
 
     return webSocketServer;

@@ -8,7 +8,8 @@ const userHolder = () => {
         const id = uniqid();
         users.push({
             id,
-            connection
+            connection,
+            name: id
         })
         return id;
     };
