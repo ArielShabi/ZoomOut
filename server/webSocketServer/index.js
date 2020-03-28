@@ -1,5 +1,6 @@
 const WebSocket = require('ws');
 const userHolder = require('./userHolder');
+const messageCreator = require('./messageCreator');
 
 const startWebSocketServer = (httpServer) => {
 
@@ -8,16 +9,14 @@ const startWebSocketServer = (httpServer) => {
 
     webSocketServer.on('connection', function connection(webSocketConnection) {
         const userId = users.addUser(webSocketConnection);
+        const user = users.getAllOpenUsers(userId);
 
-        webSocketConnection.on('message', function incoming(data) {
-            webSocketServer.clients.forEach(client => {
-                users.getAllOpenUsers(userId).
-                    forEach(user => user.connection.send(data));
-            });
+        webSocketConnection.on('message', userMessage => {
+            const messageToSend = messageCreator.createMessage(userMessage.data, user);
+            users.getAllOpenUsers(userId).forEach(user => user.connection.send(messageToSend));
         });
 
         webSocketConnection.on('close', (code, reason) => {
-            console.log(userId);
             users.removeUser(userId);
         });
     });
