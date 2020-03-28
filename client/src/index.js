@@ -1,15 +1,16 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore,compose, applyMiddleware } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './store/reducers';
 import thunk from 'redux-thunk';
+import { webSocketMiddleware, messageMiddleware } from './middlewares';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunk)));
+const store = createStore(rootReducer, composeEnhancer(applyMiddleware(webSocketMiddleware, messageMiddleware, thunk)));
 
 render(
   <Provider store={store}>

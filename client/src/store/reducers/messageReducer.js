@@ -1,11 +1,11 @@
 import { handleActions } from 'redux-actions';
-import { addMessagesAction } from '../actions/messageActions';
+import { messageActions } from '../actions';
 
 const defaultState = [];
 
 const messageReducer = handleActions(
     {
-        [addMessagesAction]: (state, action) => ( [...state, ...action.payload ])
+        [messageActions.addMessages]: (state, action) => ( [...state, ...action.payload ])
     },
     defaultState
 );

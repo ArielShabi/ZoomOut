@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 
-const CreateMessagePanel = ({ addMessages }) => {
+const CreateMessagePanel = ({ sendMessage }) => {
     const [userText, setUserText] = useState('');
 
-    const sendMessage = () => {
+    const onSendClicked = () => {
         if (userText.length > 0) {
-            addMessages([userText]);
+            sendMessage([userText]);
             setUserText('');
         }
     }
 
     return (
         <div>
-            <input type="text" value={userText} onInput={e => setUserText(e.target.value)} />
-            <button onClick={sendMessage}>שלח</button>
+            <input type="text" value={userText} onChange={e => setUserText(e.target.value)} />
+            <button onClick={onSendClicked}>שלח</button>
         </div>
     )
 };

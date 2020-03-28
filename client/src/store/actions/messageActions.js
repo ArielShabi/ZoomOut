@@ -1,8 +1,14 @@
 import { createAction } from 'redux-actions';
+import { webSocketActions } from './';
 
-const addMessagesAction = createAction('ADD_MESSAGE');
+const addMessages = createAction('ADD_MESSAGE');
 
-const addMessages = messages => (addMessagesAction(messages));
+const sendMessage = (message) => (dispatch) => {
+    dispatch(webSocketActions.sendWebSocket(message));
+    dispatch(addMessages(message));
+};
 
-
-export { addMessages, addMessagesAction };
+export default {
+    addMessages,
+    sendMessage
+};

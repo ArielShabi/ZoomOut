@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import { addMessages } from '../../store/actions/messageActions';
+import { messageActions } from '../../store/actions';
 import CreateMessagePanel from './CreateMessagePanel';
 
-const mapDispatchToProps = dispatch => ({
-    addMessages: messages => dispatch(addMessages(messages))
-})
+const mapDispatchToProps = {
+    sendMessage: messageActions.sendMessage
+}
 
 export default connect(null, mapDispatchToProps)(CreateMessagePanel);
