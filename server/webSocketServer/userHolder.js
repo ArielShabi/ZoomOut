@@ -32,8 +32,8 @@ const userHolder = () => {
         addUser,
         removeUser,
         editUser,
+        getUser,
         getAllOpenUsers
-
     };
 }
 
