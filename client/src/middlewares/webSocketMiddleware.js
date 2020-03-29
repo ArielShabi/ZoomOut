@@ -1,12 +1,11 @@
-import { webSocketActions, messageActions } from '../store/actions';
+import { webSocketActions } from '../store/actions';
 
 const host = "ws://localhost:1337/";
 
 const webSocketMiddleware = () => {
     let socket = null;
 
-    const onOpen = store => (event) => {
-        console.log('websocket open', event.target.url);
+    const onOpen = store => (event) => {        
         store.dispatch(webSocketActions.connectedWebSocket(event.target.url));
     };
 
@@ -15,9 +14,7 @@ const webSocketMiddleware = () => {
     };
 
     const onMessage = store => (event) => {
-        const payload = event.data;
-        console.log('receiving server message');
-
+        const payload = event.data;        
         store.dispatch(webSocketActions.dataRecived(payload));
     }
 
@@ -29,7 +26,6 @@ const webSocketMiddleware = () => {
                 }
 
                 socket = new WebSocket(host);
-
                 socket.onmessage = onMessage(store);
                 socket.onclose = onClose(store);
                 socket.onopen = onOpen(store);
