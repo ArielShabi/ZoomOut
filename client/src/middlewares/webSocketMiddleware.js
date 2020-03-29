@@ -1,11 +1,12 @@
 import { webSocketActions } from '../store/actions';
+import config from '../config';
 
-const host = "ws://localhost:1337/";
+const webSocketUrl = config.websocketUrl;
 
 const webSocketMiddleware = () => {
     let socket = null;
 
-    const onOpen = store => (event) => {        
+    const onOpen = store => (event) => {
         store.dispatch(webSocketActions.connectedWebSocket(event.target.url));
     };
 
@@ -14,7 +15,7 @@ const webSocketMiddleware = () => {
     };
 
     const onMessage = store => (event) => {
-        const payload = event.data;        
+        const payload = event.data;
         store.dispatch(webSocketActions.dataRecived(payload));
     }
 
@@ -25,7 +26,7 @@ const webSocketMiddleware = () => {
                     socket.close();
                 }
 
-                socket = new WebSocket(host);
+                socket = new WebSocket(webSocketUrl);
                 socket.onmessage = onMessage(store);
                 socket.onclose = onClose(store);
                 socket.onopen = onOpen(store);
