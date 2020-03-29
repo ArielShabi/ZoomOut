@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Message from '../Message';
 import './message-list-panel.css';
 
 const MessageListPanel = ({ messages }) => {
     const messagesComponenets = messages.map(
-        (messageText, index) => (<Message key={index} text={messageText} />)
+        (message, index) => (<Message key={index} message={message} />)
     );
 
     return (
@@ -13,5 +14,14 @@ const MessageListPanel = ({ messages }) => {
         </div>
     )
 };
+
+MessageListPanel.propTypes = {
+    messages: PropTypes.arrayOf(PropTypes.shape({
+        data: PropTypes.string,
+        from: PropTypes.shape({
+            name: PropTypes.string
+        })
+    })).isRequired
+}
 
 export default MessageListPanel;

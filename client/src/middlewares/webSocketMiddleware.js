@@ -1,12 +1,12 @@
-import { webSocketActions, messageActions } from '../store/actions';
+import { webSocketActions } from '../store/actions';
+import config from '../config';
 
-const host = "ws://localhost:1337/";
+const webSocketUrl = config.websocketUrl;
 
 const webSocketMiddleware = () => {
     let socket = null;
 
     const onOpen = store => (event) => {
-        console.log('websocket open', event.target.url);
         store.dispatch(webSocketActions.connectedWebSocket(event.target.url));
     };
 
@@ -16,9 +16,7 @@ const webSocketMiddleware = () => {
 
     const onMessage = store => (event) => {
         const payload = event.data;
-        console.log('receiving server message');
-
-        store.dispatch(webSocketActions.dataRecived(payload));        
+        store.dispatch(webSocketActions.dataRecived(payload));
     }
 
     return store => next => action => {
@@ -28,8 +26,7 @@ const webSocketMiddleware = () => {
                     socket.close();
                 }
 
-                socket = new WebSocket(host);
-
+                socket = new WebSocket(webSocketUrl);
                 socket.onmessage = onMessage(store);
                 socket.onclose = onClose(store);
                 socket.onopen = onOpen(store);
@@ -43,8 +40,8 @@ const webSocketMiddleware = () => {
                 console.log('websocket closed');
                 break;
             case webSocketActions.types.send:
-                console.log('sending a message', action);                
-                socket.send(JSON.stringify(action.payload));
+                console.log('sending a message', action);
+                socket.send(JSON.stringify({ data: action.payload }));
                 break;
             default:
                 return next(action);

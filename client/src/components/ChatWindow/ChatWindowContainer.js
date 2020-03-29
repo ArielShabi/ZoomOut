@@ -4,6 +4,6 @@ import ChatWindow from './ChatWindow';
 
 const mapDispatchToProps = {
     connectWebSocket: webSocketActions.connectWebSocket
-}
+};
 
 export default connect(null, mapDispatchToProps)(ChatWindow);
