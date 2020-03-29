@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import CreateMessagePanel from '../CreateMessagePanel';
 import MessageListPanel from '../MessageListPanel';
 
 const ChatWindow = ({ connectWebSocket }) => {
     useEffect(() => {
-        connectWebSocket()
+        connectWebSocket();
     });
 
     return (
@@ -12,7 +13,11 @@ const ChatWindow = ({ connectWebSocket }) => {
             <MessageListPanel />
             <CreateMessagePanel />
         </div>
-    )
+    );
+};
+
+ChatWindow.propTypes = {
+    connectWebSocket: PropTypes.func.isRequired
 };
 
 export default ChatWindow;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const CreateMessagePanel = ({ sendMessage }) => {
     const [userText, setUserText] = useState('');
@@ -16,6 +17,10 @@ const CreateMessagePanel = ({ sendMessage }) => {
             <button onClick={onSendClicked}>שלח</button>
         </div>
     )
+};
+
+CreateMessagePanel.propTypes = {
+    sendMessage: PropTypes.func.isRequired
 };
 
 export default CreateMessagePanel;

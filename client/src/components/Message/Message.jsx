@@ -1,12 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Message = (props) => { 
-    console.log(props.message);
-    return(
+const Message = ({ message }) => (
     <div>
-        <span>{props.message.from.name}:    </span>        
-        <span>{props.message.data}</span>
+        <span>{message.from.name}:    </span>
+        <span>{message.data}</span>
     </div>
-);}
+);
+
+Message.propTypes = {
+    message : PropTypes.shape({
+        data: PropTypes.string,
+        from: PropTypes.shape({
+            name: PropTypes.string
+        })
+    }).isRequired
+}
 
 export default Message;
