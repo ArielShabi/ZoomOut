@@ -1,6 +1,6 @@
-const createMessage = (data, sendingUser) => (JSON.stringify({ data, from: { id: sendingUser.id, name: sendingUser.name } }));
+const createMessage = (data, sendingUser) => (JSON.stringify({ from: { id: sendingUser.id, name: sendingUser.name }, data }));
 
-const createServerMessage = (data) => (JSON.stringify({ data, from: { id: 'server' } }));
+const createServerMessage = (data) => (JSON.stringify({ from: { id: 'server' }, data }));
 
 module.exports = {
     createMessage,

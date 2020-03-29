@@ -1,6 +1,7 @@
 const WebSocket = require('ws');
 const userHolder = require('./userHolder');
 const messageCreator = require('./messageCreator');
+const utils = require('../utils');
 
 const startWebSocketServer = (httpServer) => {
 
@@ -12,7 +13,12 @@ const startWebSocketServer = (httpServer) => {
         const user = users.getUser(userId);
 
         webSocketConnection.on('message', rawMessage => {
-            const parsedMessage = JSON.parse(rawMessage);
+            const parsedMessage = utils.tryParseJson(rawMessage);
+
+            if (!parsedMessage) {
+                return;
+            }
+            
             const messageToSend = messageCreator.createMessage(parsedMessage.data, user);
             users.getAllOpenUsers(userId).forEach(user => user.connection.send(messageToSend));
         });
