@@ -4,7 +4,7 @@ import './message-list-panel.css';
 
 const MessageListPanel = ({ messages }) => {
     const messagesComponenets = messages.map(
-        (messageText, index) => (<Message key={index} text={messageText} />)
+        (message, index) => (<Message key={index} message={message} />)
     );
 
     return (
