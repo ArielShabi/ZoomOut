@@ -20,7 +20,7 @@ const CreateMessagePanel = ({ sendMessage }) => {
     return (
         <div>
             <input type="text" value={userText} onChange={e => setUserText(e.target.value)} onKeyPress={e => onKeyPress(e)} />
-            <button onClick={onSendClicked} >שלח</button>
+            <button onClick={onSendClicked}>שלח</button>
         </div>
     )
 };
