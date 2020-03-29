@@ -18,7 +18,7 @@ const webSocketMiddleware = () => {
         const payload = event.data;
         console.log('receiving server message');
 
-        store.dispatch(webSocketActions.dataRecived(payload));        
+        store.dispatch(webSocketActions.dataRecived(payload));
     }
 
     return store => next => action => {
@@ -43,8 +43,8 @@ const webSocketMiddleware = () => {
                 console.log('websocket closed');
                 break;
             case webSocketActions.types.send:
-                console.log('sending a message', action);                
-                socket.send(JSON.stringify(action.payload));
+                console.log('sending a message', action);
+                socket.send(JSON.stringify({ data: action.payload }));
                 break;
             default:
                 return next(action);

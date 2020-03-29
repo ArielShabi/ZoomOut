@@ -5,7 +5,7 @@ const CreateMessagePanel = ({ sendMessage }) => {
 
     const onSendClicked = () => {
         if (userText.length > 0) {
-            sendMessage([userText]);
+            sendMessage(userText);
             setUserText('');
         }
     }
