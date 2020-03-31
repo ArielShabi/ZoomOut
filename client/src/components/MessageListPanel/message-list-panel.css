@@ -1,0 +1,8 @@
+.message-list-panel{
+    width: 20em;
+    height: 20em;
+    border: black 2px;
+    border-style: solid;
+    margin-right: auto;
+    margin-left: auto;
+}
