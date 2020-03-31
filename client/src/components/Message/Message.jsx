@@ -9,12 +9,7 @@ const Message = ({ message }) => (
 );
 
 Message.propTypes = {
-    message : PropTypes.shape({
-        data: PropTypes.string,
-        from: PropTypes.shape({
-            name: PropTypes.string
-        })
-    }).isRequired
+    message : PropTypes.object.isRequired
 }
 
 export default Message;

@@ -1,12 +1,12 @@
 const WebSocket = require('ws');
-const userHolder = require('./userHolder');
+const userContainer = require('./userContainer');
 const messageCreator = require('./messageCreator');
 const utils = require('../utils');
 
 const startWebSocketServer = (httpServer) => {
 
     const webSocketServer = new WebSocket.Server({ server: httpServer });
-    const users = userHolder();
+    const users = userContainer();
 
     webSocketServer.on('connection', webSocketConnection => {
         const userId = users.addUser(webSocketConnection);
