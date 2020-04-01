@@ -1,4 +1,6 @@
-tryParseJson = str => {
+const { uniqueNamesGenerator, adjectives, animals } = require('unique-names-generator');
+
+const tryParseJson = str => {
     try {
         return JSON.parse(str);
     } catch (e) {
@@ -7,6 +9,17 @@ tryParseJson = str => {
     }
 }
 
+const getRandomName = () => {
+    let name;
+
+    do {
+        name = uniqueNamesGenerator({ dictionaries: [adjectives, animals], length: 2, separator: '', style: 'capital' });
+    } while (name.length > 15);
+
+    return name;
+}
+
 module.exports = {
-    tryParseJson
+    tryParseJson,
+    getRandomName
 }
