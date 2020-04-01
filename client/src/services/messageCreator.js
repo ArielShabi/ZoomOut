@@ -1,4 +1,4 @@
-import { broadcastMessageType, editUserInfoMessageType } from './messageTypes'
+import { broadcastMessageType, editUserInfoMessageType } from '../common/messageTypes'
 
 const createBoardcostMessage = data => ({ data, type: broadcastMessageType });
 const createSelfShownMessage = data => ({ data, from: { id: 'me', name: 'me' } });
