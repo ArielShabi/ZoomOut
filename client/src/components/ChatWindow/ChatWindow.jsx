@@ -1,15 +1,13 @@
 import React from 'react';
-import UserInfo from '../UserInfo/';
+import UserInfoPanel from '../UserInfo/';
 import CreateMessagePanel from '../CreateMessagePanel';
 import MessageListPanel from '../MessageListPanel';
 import './chat-window.css';
 
 const ChatWindow = () => (
     <div className="chat-window">
-       {/* <div className="main-chat-panel"> */}
-            <UserInfo />
-            <MessageListPanel />
-       {/* </div> */}
+        <UserInfoPanel />
+        <MessageListPanel />
         <CreateMessagePanel />
     </div>
 );

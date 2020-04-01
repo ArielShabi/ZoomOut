@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { userNameSelector } from '../../store/selectors/userSelector';
-import UserInfo from './UserInfo';
+import UserInfoPanel from './UserInfoPanel';
 
 const mapStateToProps = state => ({
     userName: userNameSelector(state)
 });
 
-export default connect(mapStateToProps)(UserInfo);
+export default connect(mapStateToProps)(UserInfoPanel);

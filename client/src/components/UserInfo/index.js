@@ -1,3 +1,3 @@
-import UserInfo from "./userInfoContainer";
+import UserInfoPanel from "./userInfoPanelContainer";
 
-export default UserInfo;
+export default UserInfoPanel;
