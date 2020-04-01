@@ -1,5 +1,5 @@
 import React from 'react';
-import WebSocketInitiator from './components/webSocketWrapper';
+import WebSocketInitiator from './components/WebSocketInitiator';
 import ChatWindow from './components/ChatWindow';
 import './App.css';
 
