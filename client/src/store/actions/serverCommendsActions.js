@@ -1,5 +1,7 @@
-import { editUserInfoMessageType } from '../../common/messageTypes';
-import { userActions } from './';
+import { editUserInfoMessageType, getRandomNameMessageType } from '../../common/messageTypes';
+import { messageCreator } from '../../services';
+import { userActions, webSocketActions } from './';
+
 
 const serverCommendArrived = commend => dispatch => {
     switch (commend.type) {
@@ -11,7 +13,12 @@ const serverCommendArrived = commend => dispatch => {
     }
 };
 
+const getRandomName = () => () => {
+    const messageToSend = messageCreator.createtypeOnlyMessage(getRandomNameMessageType);
+    webSocketActions.sendWebSocket(messageToSend);
+}
 
 export default {
-    serverCommendArrived
+    serverCommendArrived,
+    getRandomName
 };
