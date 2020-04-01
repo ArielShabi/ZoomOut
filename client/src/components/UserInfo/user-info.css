@@ -1,0 +1,6 @@
+.user-info {
+    border: black 2px;
+    border-right: 0;
+    border-style: solid;
+    width: 7em;
+}
