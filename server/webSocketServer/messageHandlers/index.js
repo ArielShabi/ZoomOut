@@ -1,9 +1,11 @@
 const broadcastMessageHandler = require('./broadcastMessageHandler');
 const editUserInfoMessageHandler = require('./editUserInfoMessageHandler');
+const randomNameMessageHandler = require('./randomNameMessageHandler');
 
 const messageHandlers = [
     broadcastMessageHandler,
-    editUserInfoMessageHandler
+    editUserInfoMessageHandler,
+    randomNameMessageHandler
 ]
 
 const handleMessage = (message, user, userContainer) => {
@@ -11,4 +13,4 @@ const handleMessage = (message, user, userContainer) => {
 }
 
 
-module.exports = { handleMessage, messageHandlers }
+module.exports = { handleMessage, messageHandlers };

@@ -1,12 +1,12 @@
 const { broadcastMessageType } = require('../messageTypes')
-const messageCreator = require('../messageCreator');
+const { createMessage } = require('../messageCreator');
 
 const handleMessage = (message, user, userContainer) => {
     if (message.type !== broadcastMessageType) {
         return;
     }
 
-    const messageToSend = messageCreator.createMessage(user, message.data);
+    const messageToSend = createMessage(user, message.data);
 
     userContainer.getAllOpenUsers().forEach(openUser => {
         if (openUser.id !== user.id) {
