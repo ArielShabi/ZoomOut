@@ -5,11 +5,11 @@ import MessageListPanel from '../MessageListPanel';
 import './chat-window.css';
 
 const ChatWindow = () => (
-    <div>
-        <div className="main-chat-panel">
+    <div className="chat-window">
+       {/* <div className="main-chat-panel"> */}
             <UserInfo />
             <MessageListPanel />
-        </div>
+       {/* </div> */}
         <CreateMessagePanel />
     </div>
 );

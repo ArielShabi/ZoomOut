@@ -1,6 +1,7 @@
 .user-info {
+    grid-column: 2;
+    grid-row: 1;
     border: black 2px;
     border-right: 0;
     border-style: solid;
-    width: 7em;
 }

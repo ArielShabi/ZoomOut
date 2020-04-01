@@ -1,6 +1,6 @@
 .message-list-panel {
-    width: 20em;
-    height: 20em;
+    grid-column: 3;
+    grid-row: 1;
     border: black 2px;
     border-style: solid;
 }

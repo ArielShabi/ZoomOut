@@ -1,3 +1,9 @@
+.chat-window {
+    display: grid;
+    grid-template-columns: auto 7em 20em auto;
+    grid-template-rows: 20em 3em;
+}
+
 .main-chat-panel {
     margin-top: 3em;
     display: flex;
