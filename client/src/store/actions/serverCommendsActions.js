@@ -1,8 +1,13 @@
+import { editUserInfoMessageType } from '../../common/messageTypes';
 import { userActions } from './';
 
 const serverCommendArrived = commend => dispatch => {
-    if (commend.userId) {
-        dispatch(userActions.editUserInfo({ id: commend.userId }));
+    switch (commend.type) {
+        case editUserInfoMessageType: {
+            dispatch(userActions.editUserInfo({ ...commend.data }));
+            break;
+        }
+        default: break;
     }
 };
 
