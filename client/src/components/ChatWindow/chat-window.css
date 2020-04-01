@@ -1,6 +1,6 @@
 .chat-window {
     display: grid;
-    grid-template-columns: auto 10em 20em auto;
+    grid-template-columns: auto 12em 22em auto;
     grid-template-rows: 30em 3em;
 }
 
