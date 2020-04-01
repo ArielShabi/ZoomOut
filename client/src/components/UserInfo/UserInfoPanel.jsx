@@ -3,7 +3,11 @@ import './user-info-panel.css';
 
 const UserInfoPanel = ({ userName }) => (
     <div className="user-info-panel">
-        <span>{userName}</span>
+        <p className="user-name">
+            <span> Your Name:</span>
+            <br />
+            <span> {userName}</span>
+        </p>
     </div>
 );
 
