@@ -1,6 +1,6 @@
 const WebSocket = require('ws');
+const uniqid = require('uniqid');
 const { getRandomName } = require('../utils');
-
 
 const userContainer = () => {
     let users = [];
@@ -21,9 +21,9 @@ const userContainer = () => {
     }
 
     const editUser = (id, newUserData) => {
-        const userToEdit = users.find(user => user.id === id);
-
-        userToEdit = {...userToEdit, ...newUserData };
+        const userToEditIndex = users.findIndex(user => user.id === id);
+        const userToEdit = users[userToEditIndex];
+        users[userToEditIndex] = { ...userToEdit, ...newUserData };
     }
 
     const getUser = (id) => users.find(user => user.id === id);

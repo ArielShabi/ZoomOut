@@ -11,7 +11,7 @@ const handleMessage = (message, user, userContainer) => {
     const newInfo = { name: newName };
     userContainer.editUser(user.id, newInfo);
     const editUserMessage = createEditUserInfoMessage(newInfo);
-    user.send(editUserMessage);
-}
+    user.connection.send(editUserMessage);
+};
 
 module.exports = handleMessage;

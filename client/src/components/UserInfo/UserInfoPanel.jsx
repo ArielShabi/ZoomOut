@@ -4,13 +4,13 @@ import { Casino } from '@material-ui/icons';
 import './user-info-panel.css';
 
 
-const UserInfoPanel = ({ userName }) => (
+const UserInfoPanel = ({ userName, getRandomName }) => (
     <div className="user-info-panel">
         <p className="user-name">
             <span> Your Name:</span>
             <br />
             <span> {userName}</span>
-            <IconButton>
+            <IconButton onClick={getRandomName}>
                 <Casino />
             </IconButton>
         </p>

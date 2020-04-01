@@ -13,9 +13,9 @@ const serverCommendArrived = commend => dispatch => {
     }
 };
 
-const getRandomName = () => () => {
+const getRandomName = () => dispatch => {
     const messageToSend = messageCreator.createtypeOnlyMessage(getRandomNameMessageType);
-    webSocketActions.sendWebSocket(messageToSend);
+    dispatch(webSocketActions.sendWebSocket(messageToSend));
 }
 
 export default {

@@ -13,7 +13,7 @@ const connectWebSocket = () => dispatch => {
     dispatch(connectedWebSocket());
 };
 
-const sendWebSocket = data => dispatch => {
+const sendWebSocket = data => () => {
     const jsonData = JSON.stringify(data);
     webSocketService.send(jsonData);
 };
