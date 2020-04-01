@@ -1,15 +1,17 @@
 const WebSocket = require('ws');
 const uniqid = require('uniqid');
+const { uniqueNamesGenerator, adjectives, animals } = require('unique-names-generator');
 
 const userContainer = () => {
     let users = [];
 
     const addUser = connection => {
         const id = uniqid();
+        const name = uniqueNamesGenerator({ dictionaries: [adjectives, animals], length: 2, separator: '', style: 'capital' });
         users.push({
             id,
             connection,
-            name: id
+            name
         })
         return id;
     };
