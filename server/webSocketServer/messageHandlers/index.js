@@ -7,7 +7,7 @@ const messageHandlers = [
 ]
 
 const handleMessage = (message, user, userContainer) => {
-    messageHandlers.forEach(handler => handler.handleMessage(message, user, userContainer));
+    messageHandlers.forEach(handler => handler(message, user, userContainer));
 }
 
 

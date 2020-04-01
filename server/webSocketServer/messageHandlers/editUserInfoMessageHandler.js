@@ -1,4 +1,4 @@
-const editUserInfoMessageType = 'EDIT_USER_INFO';
+const {editUserInfoMessageType} = require('./messageTypes');
 
 const handleMessage = (message, user, userContainer) => {
     if (message.type !== editUserInfoMessageType) {
