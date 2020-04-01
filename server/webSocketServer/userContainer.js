@@ -1,7 +1,7 @@
 const WebSocket = require('ws');
 const uniqid = require('uniqid');
 
-const userHolder = () => {
+const userContainer = () => {
     let users = [];
 
     const addUser = connection => {
@@ -37,4 +37,4 @@ const userHolder = () => {
     };
 }
 
-module.exports = userHolder;
+module.exports = userContainer;

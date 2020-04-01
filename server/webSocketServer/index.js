@@ -10,17 +10,21 @@ const startWebSocketServer = (httpServer) => {
 
     webSocketServer.on('connection', webSocketConnection => {
         const userId = users.addUser(webSocketConnection);
-        const user = users.getUser(userId);
+        const currentUser = users.getUser(userId);
 
         webSocketConnection.on('message', rawMessage => {
             const parsedMessage = utils.tryParseJson(rawMessage);
-
+            
             if (!parsedMessage) {
                 return;
             }
-            
-            const messageToSend = messageCreator.createMessage(parsedMessage.data, user);
-            users.getAllOpenUsers(userId).forEach(user => user.connection.send(messageToSend));
+
+            const messageToSend = messageCreator.createMessage(parsedMessage.data, currentUser);
+            users.getAllOpenUsers().forEach(user => {
+                if (user.id !== userId) {
+                    user.connection.send(messageToSend);
+                }
+            });
         });
 
         webSocketConnection.on('close', (code, reason) => {

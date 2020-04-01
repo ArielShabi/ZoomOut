@@ -1,26 +1,48 @@
 import { createAction } from 'redux-actions';
+import { dataParser, webSocketService } from '../../services';
+import { serverCommendsActions, messageActions } from './';
+import config from '../../config';
 
-const types = {
-    connect: 'WS_CONNECT',
-    close: 'WS_CLOSE',
-    send: 'WS_SEND',
-    received: 'WS_DATA_RECEIVED'
-}
+const webSocketUrl = config.websocketUrl;
 
-const connectWebSocket = createAction(types.connect);
-const closeWebSocket = createAction(types.close);
-const sendWebSocket = createAction(types.send);
-const dataRecived = createAction(types.received);
 const connectedWebSocket = createAction('WS_CONNECTED');
 const closedWebSocket = createAction('WS_CLOSED');
 
+const connectWebSocket = () => dispatch => {
+    webSocketService.connectToServer(webSocketUrl);
+    dispatch(connectedWebSocket());
+};
+
+const sendWebSocket = data => dispatch => {
+    const jsonData = JSON.stringify(data);
+    webSocketService.send(jsonData);
+};
+
+const subscribeToWebSocket = (eventName, callback) => dispatch => {
+    webSocketService.subscribeTo(eventName, callback);
+};
+
+const closeWebSocket = (reason, code = 1000) => dispatch => {
+    webSocketService.close(reason, code);
+};
+
+const messageRecived = rawData => dispatch => {
+    const message = dataParser.tryParseServerMessageEvent(rawData);
+
+    if (message.from.id === 'server') {
+        dispatch(serverCommendsActions.serverCommendArrived(message.data));
+        return;
+    }
+
+    dispatch(messageActions.userMessageArrived(message));
+}
 
 export default {
-    types,
+    subscribeToWebSocket,
     connectWebSocket,
     closeWebSocket,
     sendWebSocket,
-    dataRecived,
+    messageRecived,
     connectedWebSocket,
     closedWebSocket
 };
