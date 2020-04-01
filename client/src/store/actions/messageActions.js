@@ -1,12 +1,14 @@
 import { createAction } from 'redux-actions';
+import messageCreator from '../../services/messageCreator';
 import { webSocketActions } from './';
+
 
 const addMessages = createAction('ADD_MESSAGE');
 
 const sendMessage = messageText => dispatch => {
-    const messageToServer = { data: messageText }
+    const messageToServer = messageCreator.createBoardcostMessage(messageText);
     dispatch(webSocketActions.sendWebSocket(messageToServer));
-    const message = { ...messageToServer, from: { id: 'me', name: 'me' } }
+    const message = messageCreator.createSelfShownMessage(messageText);
     dispatch(addMessages([message]));
 };
 
