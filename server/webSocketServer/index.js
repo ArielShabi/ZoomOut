@@ -26,8 +26,8 @@ const startWebSocketServer = (httpServer) => {
             users.removeUser(userId);
         });
 
-        const userIdMessage = messageCreator.createServerMessage({ userId });
-        webSocketConnection.send(userIdMessage);
+        const userNameMessage = messageCreator.createEditUserInfoMessage({ name: currentUser.name });
+        webSocketConnection.send(userNameMessage);
     });
 
     return webSocketServer;
