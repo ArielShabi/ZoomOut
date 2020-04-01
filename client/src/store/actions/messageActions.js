@@ -2,7 +2,6 @@ import { createAction } from 'redux-actions';
 import messageCreator from '../../services/messageCreator';
 import { webSocketActions } from './';
 
-
 const addMessages = createAction('ADD_MESSAGE');
 
 const sendMessage = messageText => dispatch => {
@@ -13,7 +12,6 @@ const sendMessage = messageText => dispatch => {
 };
 
 const userMessageArrived = message => dispatch => {
-    console.log(message)
     dispatch(addMessages([message]));
 }
 
