@@ -6,6 +6,7 @@ const handleMessage = (message, user, userContainer) => {
     }
 
     userContainer.editUser(user.id, message.data);
+    
 }
 
 module.exports = handleMessage;
