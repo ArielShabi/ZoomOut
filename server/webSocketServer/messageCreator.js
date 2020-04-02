@@ -1,4 +1,4 @@
-const { editUserInfoMessageType } = require('./messageTypes')
+const { editUserInfoMessageType } = require('./messageTypes');
 
 const createMessage = (sendingUser,data ) => (JSON.stringify({
     from: { id: sendingUser.id, name: sendingUser.name },
