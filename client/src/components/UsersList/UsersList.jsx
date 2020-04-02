@@ -1,7 +1,7 @@
 import React from 'react';
 
 const UsersList = ({ users }) => {
-    const usersElements = users.map(user => <span>{user.name}</span>);
+    const usersElements = users.map(user => <li>{user.name}</li>);
 
     return (
         <div className="users-list">
