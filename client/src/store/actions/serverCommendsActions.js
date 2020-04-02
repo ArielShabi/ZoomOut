@@ -6,7 +6,7 @@ import { userActions, webSocketActions } from './';
 const serverCommendArrived = commend => dispatch => {
     switch (commend.type) {
         case editUserInfoMessageType: {
-            dispatch(userActions.editUserInfo({ ...commend.data }));
+            dispatch(userActions.editCurrentUserInfo({ ...commend.data }));
             break;
         }
         default: break;

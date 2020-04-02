@@ -1,11 +1,12 @@
 import { handleActions } from 'redux-actions';
 import { userActions } from '../actions';
 
-const defaultState = {};
+const defaultState = {otherUsers:[]};
 
 const userReducer = handleActions(
     {
-        [userActions.editUserInfo]: (state, action) => ( {...state, ...action.payload })
+        [userActions.editCurrentUserInfo]: (state, action) => ({ ...state, ...action.payload }),
+        [userActions.editCurrentUserInfo]: (state, action) => ({ ...state, otherUsers: [...state.otherUsers, action.payload] })
     },
     defaultState
 );

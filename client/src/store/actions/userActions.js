@@ -1,7 +1,9 @@
 import { createAction } from 'redux-actions';
 
-const editUserInfo = createAction('EDIT_USER');
+const editCurrentUserInfo = createAction('EDIT_CURRENT_USER');
+const addUserAction = createAction('ADD_USER_ACTION');
 
 export default {
-    editUserInfo
+    editCurrentUserInfo,
+    addUserAction
 };
