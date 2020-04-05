@@ -1,4 +1,4 @@
-import { editUserInfoMessageType, userJoinedMessageType, userRemovedMessageType, getRandomNameMessageType } from '../../common/messageTypes';
+import { editUserInfoMessageType, userJoinedMessageType, userRemovedMessageType, getRandomNameMessageType, otherUserEditedMessageTyped } from '../../common/messageTypes';
 import { messageCreator } from '../../services';
 import { userActions, webSocketActions } from './';
 
@@ -15,6 +15,10 @@ const serverCommendArrived = commend => dispatch => {
         }
         case userRemovedMessageType: {
             dispatch(userActions.removeUserAction(commend.data.id));
+            break;
+        }
+        case otherUserEditedMessageTyped: {
+            dispatch(userActions.editOtherUserInfo(commend.data));
             break;
         }
         default: break;
