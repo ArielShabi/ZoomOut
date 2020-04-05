@@ -1,12 +1,17 @@
 import React from 'react';
+import { List, ListItem, ListItemText } from '@material-ui/core';
 
 const UsersList = ({ users }) => {
-    const usersElements = users.map(user => <li>{user.name}</li>);
+    const usersElements = users.map(user =>
+        <ListItem>
+            <ListItemText primary={user.name} />
+        </ListItem>
+    );
 
     return (
-        <div className="users-list">
+        <List className="users-list">
             {usersElements}
-        </div>
+        </List>
     )
 };
 

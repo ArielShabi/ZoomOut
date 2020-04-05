@@ -1,13 +1,13 @@
 import React from 'react';
-import { IconButton } from '@material-ui/core';
+import { IconButton,Paper } from '@material-ui/core';
 import { Casino } from '@material-ui/icons';
 import UsersList from '../UsersList';
 import './info-panel.css';
 
 const UserInfoPanel = ({ userName, getRandomName }) => (
-    <div className="info-panel">
+    <Paper className="info-panel">
+        <UsersList />
         <p className="user-name">
-            <UsersList />
             <span> Your Name:</span>
             <br />
             <span> {userName}</span>
@@ -15,7 +15,7 @@ const UserInfoPanel = ({ userName, getRandomName }) => (
                 <Casino />
             </IconButton>
         </p>
-    </div>
+    </Paper>
 );
 
 export default UserInfoPanel;
