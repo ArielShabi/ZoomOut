@@ -6,7 +6,8 @@ const defaultState = { otherUsers: [] };
 const userReducer = handleActions(
     {
         [userActions.editCurrentUserInfo]: (state, action) => ({ ...state, ...action.payload }),
-        [userActions.addUserAction]: (state, action) => ({ ...state, otherUsers: [...state.otherUsers, action.payload] })
+        [userActions.addUserAction]: (state, action) => ({ ...state, otherUsers: [...state.otherUsers, action.payload] }),
+        [userActions.removeUserAction]: (state, action) => ({ ...state, otherUsers: state.otherUsers.filter(user => user.id !== action.payload) })
     },
     defaultState
 );

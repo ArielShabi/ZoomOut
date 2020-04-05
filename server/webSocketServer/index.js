@@ -9,7 +9,7 @@ const startWebSocketServer = (httpServer) => {
     const webSocketServer = new WebSocket.Server({ server: httpServer });
     const userContainer = createUserContainer();
 
-    webSocketServer.on('connection', webSocketConnection => {
+    webSocketServer.on('connection', (webSocketConnection, req )=> {
         const userId = userContainer.addUser(webSocketConnection);
         const currentUser = userContainer.getUser(userId);
 

@@ -2,8 +2,8 @@ import React from 'react';
 import { List, ListItem, ListItemText } from '@material-ui/core';
 
 const UsersList = ({ users }) => {
-    const usersElements = users.map(user =>
-        <ListItem>
+    const usersElements = users.map((user, index) =>
+        <ListItem key={index}>
             <ListItemText primary={user.name} />
         </ListItem>
     );
