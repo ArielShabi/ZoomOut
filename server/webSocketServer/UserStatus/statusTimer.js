@@ -2,7 +2,7 @@ const statuses = require('./statuses');
 const {createOtherUserEditedInfoMessage} = require('../messageCreator');
 
 //This actually should be called statusTimerInitiatorCreator but it's a bit much
-const statusTimer = (userContaienr, timeToChangeStatus) => {
+const statusTimer = (userContainer, timeToChangeStatus) => {
     const initateStatusTimer = user => {
 
         let timer;
@@ -10,7 +10,7 @@ const statusTimer = (userContaienr, timeToChangeStatus) => {
         const timerWrapper = {
             start: () => {
                 timer = setTimeout(() => {
-                    userContaienr.editUser(user.id, { status: statuses.away });
+                    userContainer.editUser(user.id, { status: statuses.away });
                     const message = createOtherUserEditedInfoMessage(user.id, { status: statuses.away });
 
                     userContainer.getAllOpenUsers().forEach(user => {
@@ -30,11 +30,11 @@ const statusTimer = (userContaienr, timeToChangeStatus) => {
 
         const statusProperties = {
             status: statuses.online,
-            Staustimer: timerWrapper
+            statusTimer: timerWrapper
         };
 
-        userContaienr.editUser(user.id, statusProperties);
-    }
+        return userContainer.editUser(user.id, statusProperties);
+        }
 
     return {
         initateStatusTimer

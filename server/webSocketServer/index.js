@@ -14,7 +14,7 @@ const startWebSocketServer = (httpServer) => {
 
     webSocketServer.on('connection', (webSocketConnection, req) => {
         const userId = userContainer.addUser(webSocketConnection);
-        const currentUser = userContainer.getUser(userId);
+        let currentUser = userContainer.getUser(userId);
 
         webSocketConnection.on('message', rawMessage => {
             const parsedMessage = utils.tryParseJson(rawMessage);
@@ -23,7 +23,7 @@ const startWebSocketServer = (httpServer) => {
                 return;
             }
 
-            messageHandlers.handleMessage(parsedMessage, currentUser, userContainer);
+            messageHandlers.handleMessage(parsedMessage, userId, userContainer);
         });
 
         webSocketConnection.on('close', (code, reason) => {
@@ -33,7 +33,8 @@ const startWebSocketServer = (httpServer) => {
             userContainer.getAllOpenUsers().forEach(user => user.connection.send(userRemovedMessage));
         });
 
-        statusTimerInitator.initateStatusTimer(currentUser);
+        currentUser = statusTimerInitator.initateStatusTimer(currentUser);
+        currentUser.statusTimer.start();
         webSocketServerUtils.informNewUserJoined(currentUser, userContainer);
         webSocketServerUtils.sendInitialData(currentUser, userContainer);
     });

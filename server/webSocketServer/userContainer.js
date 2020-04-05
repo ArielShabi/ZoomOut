@@ -24,6 +24,7 @@ const userContainer = () => {
         const userToEditIndex = users.findIndex(user => user.id === id);
         const userToEdit = users[userToEditIndex];
         users[userToEditIndex] = { ...userToEdit, ...newUserData };
+        return users[userToEditIndex];
     }
 
     const getUser = (id) => users.find(user => user.id === id);

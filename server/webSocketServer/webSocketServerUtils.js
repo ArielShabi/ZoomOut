@@ -2,8 +2,8 @@ const messageCreator = require('./messageCreator');
 const { usersJoinedMessageType } = require('./messageTypes');
 
 const getPublicInfoFromUsers = (users) => users.map(user => {
-    const { connection, ...infoToShare } = user;
-    return { ...infoToShare };
+    const { id, name, status } = user;
+    return { id, name, status };
 });
 
 const sendInitialData = (newUser, userContainer) => {

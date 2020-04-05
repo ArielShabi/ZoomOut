@@ -10,7 +10,8 @@ const messageHandlers = [
     statusChangerMessageHandler
 ]
 
-const handleMessage = (message, user, userContainer) => {
+const handleMessage = (message, userId, userContainer) => {
+    const user = userContainer.getUser(userId);
     messageHandlers.forEach(handler => handler(message, user, userContainer));
 }
 
