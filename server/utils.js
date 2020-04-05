@@ -7,7 +7,7 @@ const tryParseJson = str => {
         console.log(`Failed to parse ${str} error: ${e}`)
         return undefined;
     }
-}
+};
 
 const getRandomName = () => {
     let name;
@@ -17,7 +17,7 @@ const getRandomName = () => {
     } while (name.length > 15);
 
     return name;
-}
+};
 
 module.exports = {
     tryParseJson,

@@ -28,14 +28,14 @@ const userContainer = () => {
 
     const getUser = (id) => users.find(user => user.id === id);
 
-    const getAllOpenUsers = () => users.filter(user => user.connection.readyState == WebSocket.OPEN);
+    const getAllOpenUsers = (idToExclude) => users.filter(user => user.id != idToExclude && user.connection.readyState == WebSocket.OPEN);
 
     return {
         addUser,
         removeUser,
         editUser,
         getUser,
-        getAllOpenUsers
+        getAllOpenUsers,
     };
 }
 

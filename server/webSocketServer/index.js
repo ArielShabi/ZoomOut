@@ -2,7 +2,8 @@ const WebSocket = require('ws');
 const messageHandlers = require('./messageHandlers');
 const createUserContainer = require('./userContainer');
 const messageCreator = require('./messageCreator');
-const { usersJoinedMessageType, userRemovedMessageType } = require('./messageTypes');
+const { userRemovedMessageType } = require('./messageTypes');
+const webSocketServerUtils = require('./webSocketServerUtils');
 const utils = require('../utils');
 
 const startWebSocketServer = (httpServer) => {
@@ -29,25 +30,8 @@ const startWebSocketServer = (httpServer) => {
             userContainer.getAllOpenUsers().forEach(user => user.connection.send(userRemovedMessage));
         });
 
-        const userNameMessage = messageCreator.createEditUserInfoMessage({ name: currentUser.name });
-        webSocketConnection.send(userNameMessage);
-
-
-
-
-
-
-        const { connection, ...infoToShare } = currentUser;
-        const newUserJoinedMessage = messageCreator.createServerMessage(usersJoinedMessageType, [{ ...infoToShare }]);
-
-        userContainer.getAllOpenUsers().forEach(user => {
-            if (user.id !== userId) {
-                user.connection.send(newUserJoinedMessage);
-                return;
-            }
-        });
-
-
+        webSocketServerUtils.informNewUserJoined(currentUser, userContainer);
+        webSocketServerUtils.sendInitialData(currentUser, userContainer);
     });
 
     return webSocketServer;
