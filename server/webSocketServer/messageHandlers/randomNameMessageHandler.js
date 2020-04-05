@@ -1,5 +1,5 @@
 const { getRandomNameMessageType } = require('../messageTypes');
-const { createEditUserInfoMessage } = require('../messageCreator');
+const { createEditUserInfoMessage, createOtherUserEditedInfoMessage } = require('../messageCreator');
 const { getRandomName } = require('../../utils');
 
 const handleMessage = (message, user, userContainer) => {
@@ -12,6 +12,12 @@ const handleMessage = (message, user, userContainer) => {
     userContainer.editUser(user.id, newInfo);
     const editUserMessage = createEditUserInfoMessage(newInfo);
     user.connection.send(editUserMessage);
+
+    const newNameMessage = createOtherUserEditedInfoMessage(user.id, { name: newName });
+
+    userContainer.getAllOpenUsers(user.id).forEach(otherUser => {
+        otherUser.connection.send(newNameMessage);
+    });
 };
 
 module.exports = handleMessage;
