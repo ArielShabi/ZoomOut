@@ -5,6 +5,7 @@ const getRandomNameMessageType = 'GET_RANDON_NAME';
 const usersJoinedMessageType = 'USERS_JOINED';
 const userRemovedMessageType = 'USER_REMOVED';
 const userEditedMessageType = 'USER_EDITED';
+const otherUserEditedMessageTyped = 'OTHER_USER_EDITED';
 
 module.exports = {
     broadcastMessageType,
@@ -12,5 +13,6 @@ module.exports = {
     getRandomNameMessageType,
     usersJoinedMessageType,
     userRemovedMessageType,
-    userEditedMessageType
+    userEditedMessageType,
+    otherUserEditedMessageTyped
 };

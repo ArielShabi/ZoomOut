@@ -1,6 +1,6 @@
-const { editUserInfoMessageType } = require('./messageTypes');
+const { editUserInfoMessageType, otherUserEditedMessageTyped } = require('./messageTypes');
 
-const createMessage = (sendingUser,data ) => (JSON.stringify({
+const createMessage = (sendingUser, data) => (JSON.stringify({
     from: { id: sendingUser.id, name: sendingUser.name },
     data
 }));
@@ -13,8 +13,12 @@ const createServerMessage = (type, data) => (JSON.stringify({
 
 const createEditUserInfoMessage = (infoToChange) => createServerMessage(editUserInfoMessageType, infoToChange)
 
+const createOtherUserEditedInfoMessage = (otherUserId, infoChanged) =>
+    createServerMessage(otherUserEditedMessageTyped, { id: otherUserId, changed: infoChanged });
+
 module.exports = {
     createMessage,
     createServerMessage,
-    createEditUserInfoMessage
+    createEditUserInfoMessage,
+    createOtherUserEditedInfoMessage
 }

@@ -27,6 +27,7 @@ const startWebSocketServer = (httpServer) => {
         });
 
         webSocketConnection.on('close', (code, reason) => {
+            currentUser.statusTimer.stop();
             userContainer.removeUser(userId);
             const userRemovedMessage = messageCreator.createServerMessage(userRemovedMessageType, { id: userId })
             userContainer.getAllOpenUsers().forEach(user => user.connection.send(userRemovedMessage));
