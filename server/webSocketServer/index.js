@@ -1,5 +1,5 @@
 const WebSocket = require('ws');
-const statusTimer = require('./UserStatus/statusTimer');
+const statusTimerFactory = require('./UserStatus/statusTimerFactory');
 const messageHandlers = require('./messageHandlers');
 const createUserContainer = require('./userContainer');
 const messageCreator = require('./messageCreator');
@@ -11,7 +11,7 @@ const config = require('../config');
 const startWebSocketServer = (httpServer) => {
     const webSocketServer = new WebSocket.Server({ server: httpServer });
     const userContainer = createUserContainer();
-    const statusTimerInitator = statusTimer(userContainer, config.timeToAway);
+    const statusTimerInitator = statusTimerFactory(userContainer, config.timeToAway);
 
     webSocketServer.on('connection', webSocketConnection => {
         const userId = userContainer.addUser(webSocketConnection);

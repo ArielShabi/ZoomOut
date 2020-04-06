@@ -2,7 +2,7 @@ const statuses = require('./statuses');
 const { createOtherUserEditedInfoMessage } = require('../messageCreator');
 
 //This actually should be called statusTimerInitiatorCreator but it's a bit much
-const statusTimer = (userContainer, timeToChangeStatus) => {
+const statusTimerFactory = (userContainer, timeToChangeStatus) => {
     const initateStatusTimer = user => {
         let timer;
 
@@ -39,4 +39,4 @@ const statusTimer = (userContainer, timeToChangeStatus) => {
     };
 };
 
-module.exports = statusTimer;
+module.exports = statusTimerFactory;

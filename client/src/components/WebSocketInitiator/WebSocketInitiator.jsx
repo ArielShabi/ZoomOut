@@ -21,7 +21,6 @@ WebSocketInitiator.propTypes = {
     messageRecived: PropTypes.func.isRequired,
     closed: PropTypes.func.isRequired,
     opened: PropTypes.func.isRequired,
-
 };
 
 export default WebSocketInitiator;
