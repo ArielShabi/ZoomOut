@@ -6,13 +6,14 @@ const messageCreator = require('./messageCreator');
 const { userRemovedMessageType } = require('./messageTypes');
 const webSocketServerUtils = require('./webSocketServerUtils');
 const utils = require('../utils');
+const config = require('../config');
 
 const startWebSocketServer = (httpServer) => {
     const webSocketServer = new WebSocket.Server({ server: httpServer });
     const userContainer = createUserContainer();
-    const statusTimerInitator = statusTimer(userContainer, 3000);
+    const statusTimerInitator = statusTimer(userContainer, config.timeToAway);
 
-    webSocketServer.on('connection', (webSocketConnection, req) => {
+    webSocketServer.on('connection', (webSocketConnection) => {
         const userId = userContainer.addUser(webSocketConnection);
         let currentUser = userContainer.getUser(userId);
 
