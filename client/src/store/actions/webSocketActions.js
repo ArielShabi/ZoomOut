@@ -13,12 +13,12 @@ const connectWebSocket = () => dispatch => {
     dispatch(connectedWebSocket());
 };
 
-const sendWebSocket = data => dispatch => {
+const sendWebSocket = data => () => {
     const jsonData = JSON.stringify(data);
     webSocketService.send(jsonData);
 };
 
-const subscribeToWebSocket = (eventName, callback) => dispatch => {
+const subscribeToWebSocket = (eventName, callback) => () => {
     webSocketService.subscribeTo(eventName, callback);
 };
 
@@ -30,7 +30,7 @@ const messageRecived = rawData => dispatch => {
     const message = dataParser.tryParseServerMessageEvent(rawData);
 
     if (message.from.id === 'server') {
-        dispatch(serverCommendsActions.serverCommendArrived(message.data));
+        dispatch(serverCommendsActions.serverCommendArrived(message));
         return;
     }
 

@@ -1,38 +1,43 @@
 const WebSocket = require('ws');
-const userContainer = require('./userContainer');
+const statusTimer = require('./UserStatus/statusTimer');
+const messageHandlers = require('./messageHandlers');
+const createUserContainer = require('./userContainer');
 const messageCreator = require('./messageCreator');
+const { userRemovedMessageType } = require('./messageTypes');
+const webSocketServerUtils = require('./webSocketServerUtils');
 const utils = require('../utils');
+const config = require('../config');
 
 const startWebSocketServer = (httpServer) => {
-
     const webSocketServer = new WebSocket.Server({ server: httpServer });
-    const users = userContainer();
+    const userContainer = createUserContainer();
+    const statusTimerInitator = statusTimer(userContainer, config.timeToAway);
 
     webSocketServer.on('connection', webSocketConnection => {
-        const userId = users.addUser(webSocketConnection);
-        const currentUser = users.getUser(userId);
+        const userId = userContainer.addUser(webSocketConnection);
+        let currentUser = userContainer.getUser(userId);
 
         webSocketConnection.on('message', rawMessage => {
             const parsedMessage = utils.tryParseJson(rawMessage);
-            
+
             if (!parsedMessage) {
                 return;
             }
 
-            const messageToSend = messageCreator.createMessage(parsedMessage.data, currentUser);
-            users.getAllOpenUsers().forEach(user => {
-                if (user.id !== userId) {
-                    user.connection.send(messageToSend);
-                }
-            });
+            messageHandlers.handleMessage(parsedMessage, userId, userContainer);
         });
 
         webSocketConnection.on('close', (code, reason) => {
-            users.removeUser(userId);
+            currentUser.statusTimer.stop();
+            userContainer.removeUser(userId);
+            const userRemovedMessage = messageCreator.createServerMessage(userRemovedMessageType, { id: userId })
+            userContainer.getAllOpenUsers().forEach(user => user.connection.send(userRemovedMessage));
         });
 
-        const userIdMessage = messageCreator.createServerMessage({ userId });
-        webSocketConnection.send(userIdMessage);
+        currentUser = statusTimerInitator.initateStatusTimer(currentUser);
+        currentUser.statusTimer.start();
+        webSocketServerUtils.sendInitialData(currentUser, userContainer);
+        webSocketServerUtils.informNewUserJoined(currentUser, userContainer);
     });
 
     return webSocketServer;

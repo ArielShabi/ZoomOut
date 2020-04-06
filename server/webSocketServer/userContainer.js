@@ -1,15 +1,17 @@
 const WebSocket = require('ws');
 const uniqid = require('uniqid');
+const { getRandomName } = require('../utils');
 
 const userContainer = () => {
     let users = [];
 
     const addUser = connection => {
         const id = uniqid();
+        const name = getRandomName();
         users.push({
             id,
             connection,
-            name: id
+            name
         })
         return id;
     };
@@ -19,21 +21,22 @@ const userContainer = () => {
     }
 
     const editUser = (id, newUserData) => {
-        const userToEdit = users.find(user => user.id === id);
-
-        userToEdit = { ...userToEdit, ...newUserData };
+        const userToEditIndex = users.findIndex(user => user.id === id);
+        const userToEdit = users[userToEditIndex];
+        users[userToEditIndex] = { ...userToEdit, ...newUserData };
+        return users[userToEditIndex];
     }
 
     const getUser = (id) => users.find(user => user.id === id);
 
-    const getAllOpenUsers = () => users.filter(user => user.connection.readyState == WebSocket.OPEN);
+    const getAllOpenUsers = (idToExclude) => users.filter(user => user.id != idToExclude && user.connection.readyState == WebSocket.OPEN);
 
     return {
         addUser,
         removeUser,
         editUser,
         getUser,
-        getAllOpenUsers
+        getAllOpenUsers,
     };
 }
 

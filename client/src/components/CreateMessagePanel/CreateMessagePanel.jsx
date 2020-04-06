@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import './create-message-panel.css';
 
 const CreateMessagePanel = ({ sendMessage }) => {
     const [userText, setUserText] = useState('');
@@ -18,7 +19,7 @@ const CreateMessagePanel = ({ sendMessage }) => {
     }
 
     return (
-        <div>
+        <div className="create-message-panel">
             <input type="text" value={userText} onChange={e => setUserText(e.target.value)} onKeyPress={e => onKeyPress(e)} />
             <button onClick={onSendClicked}>שלח</button>
         </div>
