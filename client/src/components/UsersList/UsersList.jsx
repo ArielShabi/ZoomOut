@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { List, ListItem, ListItemText, ListItemAvatar, Avatar } from '@material-ui/core';
 import statuses from '../../common/statuses';
 
@@ -21,6 +22,13 @@ const UsersList = ({ users }) => {
             {usersElements}
         </List>
     )
+};
+
+UsersList.propTypes = {
+    users : PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string,
+        status: PropTypes.string
+    })).isRequired
 };
 
 export default UsersList;
