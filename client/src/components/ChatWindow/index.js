@@ -1,3 +1,3 @@
-import ChatWindow from './ChatWindowContainer';
+import ChatWindow from './ChatWindow';
 
 export default ChatWindow;
