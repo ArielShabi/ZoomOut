@@ -1,4 +1,5 @@
 const { uniqueNamesGenerator, adjectives, animals } = require('unique-names-generator');
+const config = require('./config');
 
 const tryParseJson = str => {
     try {
@@ -14,7 +15,7 @@ const getRandomName = () => {
 
     do {
         name = uniqueNamesGenerator({ dictionaries: [adjectives, animals], length: 2, separator: '', style: 'capital' });
-    } while (name.length > 15);
+    } while (name.length > config.maxLengthRandomName);
 
     return name;
 };

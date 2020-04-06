@@ -12,6 +12,6 @@ const handleMessage = (message, user, userContainer) => {
     }
 
     user.statusTimer.restart();
-}
+};
 
 module.exports = handleMessage;

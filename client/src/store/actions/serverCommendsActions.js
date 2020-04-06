@@ -10,11 +10,11 @@ const serverCommendArrived = commend => dispatch => {
             break;
         }
         case userJoinedMessageType: {
-            dispatch(userActions.addUsersAction(commend.data));
+            dispatch(userActions.addOtherUsers(commend.data));
             break;
         }
         case userRemovedMessageType: {
-            dispatch(userActions.removeUserAction(commend.data.id));
+            dispatch(userActions.removeOtherUser(commend.data.id));
             break;
         }
         case otherUserEditedMessageTyped: {

@@ -13,7 +13,7 @@ const startWebSocketServer = (httpServer) => {
     const userContainer = createUserContainer();
     const statusTimerInitator = statusTimer(userContainer, config.timeToAway);
 
-    webSocketServer.on('connection', (webSocketConnection) => {
+    webSocketServer.on('connection', webSocketConnection => {
         const userId = userContainer.addUser(webSocketConnection);
         let currentUser = userContainer.getUser(userId);
 
@@ -36,8 +36,8 @@ const startWebSocketServer = (httpServer) => {
 
         currentUser = statusTimerInitator.initateStatusTimer(currentUser);
         currentUser.statusTimer.start();
-        webSocketServerUtils.informNewUserJoined(currentUser, userContainer);
         webSocketServerUtils.sendInitialData(currentUser, userContainer);
+        webSocketServerUtils.informNewUserJoined(currentUser, userContainer);
     });
 
     return webSocketServer;
