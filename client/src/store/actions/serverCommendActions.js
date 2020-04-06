@@ -1,23 +1,23 @@
-import { editUserInfoMessageType, userJoinedMessageType, userRemovedMessageType, getRandomNameMessageType, otherUserEditedMessageTyped } from '../../common/messageTypes';
+import * as messageTypes from '../../common/messageTypes';
 import { messageCreator } from '../../services';
-import { userActions, webSocketActions } from './';
+import { userActions, webSocketActions } from '.';
 
 
 const serverCommendArrived = commend => dispatch => {
     switch (commend.type) {
-        case editUserInfoMessageType: {
+        case messageTypes.editUserInfoMessageType: {
             dispatch(userActions.editCurrentUserInfo({ ...commend.data }));
             break;
         }
-        case userJoinedMessageType: {
+        case messageTypes.userJoinedMessageType: {
             dispatch(userActions.addOtherUsers(commend.data));
             break;
         }
-        case userRemovedMessageType: {
+        case messageTypes.userRemovedMessageType: {
             dispatch(userActions.removeOtherUser(commend.data.id));
             break;
         }
-        case otherUserEditedMessageTyped: {
+        case messageTypes.otherUserEditedMessageTyped: {
             dispatch(userActions.editOtherUserInfo(commend.data));
             break;
         }
@@ -26,7 +26,7 @@ const serverCommendArrived = commend => dispatch => {
 };
 
 const getRandomName = () => dispatch => {
-    const messageToSend = messageCreator.createtypeOnlyMessage(getRandomNameMessageType);
+    const messageToSend = messageCreator.createTypeOnlyMessage(messageTypes.getRandomNameMessageType);
     dispatch(webSocketActions.sendWebSocket(messageToSend));
 }
 

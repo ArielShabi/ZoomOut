@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { List, ListItem, ListItemText, ListItemAvatar, Avatar } from '@material-ui/core';
 import statuses from '../../common/statuses';
 
-const statusToClass = {}
-statusToClass[statuses.online] = 'online-status';
-statusToClass[statuses.away] = 'away-status';
+const statusToClass = {
+    [statuses.online]: 'online-status',
+    [statuses.away]: 'away-status'
+};
 
 const UsersList = ({ users }) => {
     const usersElements = users.map((user, index) =>
@@ -25,7 +26,7 @@ const UsersList = ({ users }) => {
 };
 
 UsersList.propTypes = {
-    users : PropTypes.arrayOf(PropTypes.shape({
+    users: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string,
         status: PropTypes.string
     })).isRequired

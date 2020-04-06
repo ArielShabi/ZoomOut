@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import serverCommendsActions from '../../store/actions/serverCommendsActions';
+import serverCommendsActions from '../../store/actions/serverCommendActions';
 import { userNameSelector } from '../../store/selectors/userSelector';
 import UserInfoPanel from './InfoPanel';
 
