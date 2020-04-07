@@ -1,4 +1,3 @@
-
 const tryParseServerMessageEvent = serverMessageEvent => {
     try {
         return JSON.parse(serverMessageEvent.data);

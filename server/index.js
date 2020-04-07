@@ -1,8 +1,9 @@
 const express = require('express');
 const { createServer } = require('http');
 const webSocket = require('./webSocketServer');
+const config = require('./config');
 
-const serverPort = 1337;
+const serverPort = config.port;
 
 const app = express();
 const httpServer = createServer({ app });

@@ -1,11 +1,15 @@
 import { handleActions } from 'redux-actions';
 import { userActions } from '../actions';
 
-const defaultState = {};
+const defaultState = { otherUsers: [] };
 
 const userReducer = handleActions(
     {
-        [userActions.editUserInfo]: (state, action) => ( {...state, ...action.payload })
+        [userActions.editCurrentUserInfo]: (state, action) => ({ ...state, ...action.payload }),
+        [userActions.addOtherUsers]: (state, action) => ({ ...state, otherUsers: [...state.otherUsers, ...action.payload] }),
+        [userActions.removeOtherUser]: (state, action) => ({ ...state, otherUsers: state.otherUsers.filter(user => user.id !== action.payload) }),
+        [userActions.editOtherUserInfo]: (state, action) =>
+            ({ ...state, otherUsers: state.otherUsers.map(user => user.id === action.payload.id ? { ...user, ...action.payload.changed } : user) })
     },
     defaultState
 );

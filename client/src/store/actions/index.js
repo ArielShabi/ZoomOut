@@ -1,5 +1,5 @@
 import messageActions from './messageActions';
-import serverCommendsActions from './serverCommendsActions';
+import serverCommendsActions from './serverCommendActions';
 import webSocketActions from './webSocketActions';
 import userActions from './userActions';
 
@@ -9,4 +9,3 @@ export {
     userActions,
     serverCommendsActions
 };
-
